@@ -1,8 +1,8 @@
 class GithubReposController < ApplicationController
-  def user_repos
+  def index
     client = Github::Client.new
 
-    response = client.user_public_repos(params[:github_repo_owner])
+    response = client.user_public_repos(params[:owner])
 
     render json: response.body
   end
