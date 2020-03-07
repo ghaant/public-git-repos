@@ -5,13 +5,20 @@ require './lib/github/connection.rb'
 module Github
   class Client
     def user_public_repos(username)
-      get_request(username)
+      endpoint = if username.empty?
+                   'repositories'
+                 else
+                   "users/#{username}/repos"
+                 end
+
+      get_request(endpoint)
     end
 
     private
 
-    def get_request(username)
-      response = Github::Connection.api.get("users/#{username}/repos")
+    def get_request(endpoint)
+      response = Github::Connection.api.get(endpoint)
+
       JSON.parse(response.body)
     end
   end
