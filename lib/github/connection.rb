@@ -1,12 +1,16 @@
 # frozen_string_literal: true
 
-class Connection
-  API_ENDPOINT = 'https://api.github.com'
+module Github
+  class Connection
+    API_BASE = 'https://api.github.com'
 
-  def self.api
-    Faraday.new(API_ENDPOINT) do |client|
-      client.request :url_encoded
-      client.adapter Faraday.default_adapter
+    def self.api
+      Faraday.new(API_BASE) do |faraday|
+        faraday.response :logger
+        faraday.request :url_encoded
+        faraday.adapter Faraday.default_adapter
+        faraday.headers['Accept'] = 'application/vnd.github.v3+json'
+      end
     end
   end
 end
