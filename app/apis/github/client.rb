@@ -17,9 +17,7 @@ module Github
     private
 
     def get_request(endpoint)
-      response = Github::Connection.api.get(endpoint)
-
-      JSON.parse(response.body)
+      Github::Connection.api.get(endpoint)
     end
   end
 end
