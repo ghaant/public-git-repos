@@ -5,7 +5,7 @@ require './lib/github/connection.rb'
 module Github
   class Client
     def user_public_repos(username)
-      endpoint = if username.nil?
+      endpoint = if username.blank?
                    'repositories'
                  else
                    "users/#{username}/repos"
