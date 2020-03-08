@@ -1,3 +1,4 @@
 Rails.application.routes.draw do
-  resources :github_repos, only: %i[index]
+  root to: 'github_repos#index'
+  get '/search' => 'github_repos#search'
 end
